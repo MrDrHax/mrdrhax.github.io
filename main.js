@@ -1,3 +1,4 @@
+
 class cube{
     x;
     y;
@@ -43,6 +44,74 @@ class cube{
     }
 }
 
+class content{
+    current = 1;
+    constructor(ctx, images){
+        this.screenspace = [canvas.width,canvas.height - 200];
+
+        this.JSONimages = images;
+        this.ctx = ctx;
+
+        console.log(this.JSONimages[this.current]);
+    }
+
+    draw(){
+        // this.ctx.fillStyle = "#fdffcf";
+        // this.ctx.fillRect(10,200,this.screenspace[0] - 20,this.screenspace[1] - 20);
+        // this.ctx.fillStyle = "#000000";
+        // this.ctx.fillRect(this.screenspace[0]/2, this.screenspace[1] / 2 + 200,20,20);
+
+        var drawIn = [100,250]
+        //draw title
+        this.ctx.font = "40px Gugi";
+        // Create gradient
+        var gradient = this.ctx.createLinearGradient(drawIn[0], drawIn[1], canvas.width, drawIn[1]);
+        gradient.addColorStop("0","#9ecdff");
+        gradient.addColorStop("0.2", "#5d79de");
+        gradient.addColorStop("0.5", "#c97db9");
+        gradient.addColorStop("1.0","#ffffff");
+        // Fill with gradient
+        this.ctx.fillStyle = gradient;
+        this.ctx.fillText(mainJSONinfo[this.current]["title"], drawIn[0], drawIn[1]);
+
+        this.ctx.font = "20px Gugi";
+        this.ctx.fillStyle = '#ffffff';
+        this.ctx.fillText(mainJSONinfo[this.current]["description"], drawIn[0] + 5, drawIn[1] + 50);
+
+        var imgScale = (this.screenspace[1] - drawIn[1] + 50) / this.JSONimages[this.current].height;
+
+        if (this.JSONimages[this.current].width * imgScale > this.screenspace[0]-200){
+            imgScale = (this.screenspace[0] - drawIn[0] - 50) / this.JSONimages[this.current].width;
+        }
+        
+        this.ctx.drawImage(this.JSONimages[this.current], drawIn[0] + 5, drawIn[1] + 100, this.JSONimages[this.current].width * imgScale,this.JSONimages[this.current].height * imgScale);
+    }
+
+    restart(){
+        this.screenspace = [canvas.width,canvas.height - 200];
+    }
+
+    nexturu(){
+        this.current += 1;
+
+        if (this.current >= this.JSONimages.length){
+            this.current = 0;
+        }
+    }
+
+    beforeuru(){
+        this.current -= 1;
+
+        if (this.current < 0){
+            this.current = this.JSONimages.length - 1;
+        }
+    }
+
+    goToPage(){
+        window.location.replace(mainJSONinfo[this.current]["link"]);
+    }
+}
+
 (function() {
     var canvas = document.getElementById('canvas'),
         ctx = canvas.getContext('2d');
@@ -51,6 +120,14 @@ class cube{
     window.addEventListener('resize', resizeCanvas, false);
     var imgAlex = new Image(); 
     imgAlex.src = "thingy.png"; 
+
+    var JSONimages = [];
+    for (let i = 0; i < mainJSONinfo.length; i++) {
+        JSONimages.push(new Image());
+        JSONimages[i].src = mainJSONinfo[i]["img"];
+    }
+
+    var display = new content(ctx, JSONimages);
 
     var cubes = [];
     for (var i = 0; i < 50; i++) {
@@ -61,6 +138,8 @@ class cube{
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
+        display.restart();
+
         /**
          * Your drawings need to be inside this function otherwise they will be reset when 
          * you resize the browser window and the canvas goes will be cleared.
@@ -68,6 +147,7 @@ class cube{
         drawStuff(); 
     }
     resizeCanvas();
+    canvas.addEventListener("mousedown", getPosition, false);
 
     function drawStuff() {
         ctx.fillStyle = "black";
@@ -81,7 +161,29 @@ class cube{
         ctx.fillRect(50,50,10,50)
 
         ctx.drawImage(imgAlex,70,50);
+
+        display.draw()
     }
+
+    function getPosition(event)
+    {
+    var x = event.x;
+    var y = event.y;
+
+    if (y > 100){
+        console.log("yes");
+        if (x > canvas.width - 100){
+            display.nexturu();
+        }
+        else if (x < 100){
+            display.beforeuru();
+        }
+        else{
+            display.goToPage();
+        }
+    }
+    } 
 
     setInterval(drawStuff, 100);
 })();
+
