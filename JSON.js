@@ -8,7 +8,25 @@ var mainJSONinfo = [
     {
         "title" : "Aztec rush",
         "description" : "a game made in unity, with a week to finish it.",
-        "img" : "images/AztecRush.png",
+        "img" : "images/AztecRush.jpg",
         "link" : "https://play.google.com/store/apps/details?id=com.AlexLabs.AztecRush&hl=en_US"
+    },
+    {
+        "title" : "Drunk Chess (developing)",
+        "description" : "a game made in unity, made to give chess a new concept, and practically unlimited players",
+        "img" : "images/AztecRush.jpg",
+        "link" : ""
+    },
+    {
+        "title" : "Simon (colab)",
+        "description" : "the pretty well known simon game, made in pyglet, as a project for school",
+        "img" : "images/Simon.png",
+        "link" : ""
+    },
+    {
+        "title" : "grizzhacks hakathon (colab)",
+        "description" : "the pretty well known simon game, made in pyglet, as a project for school",
+        "img" : "images/Simon.png",
+        "link" : "https://github.com/JorgePerC/GrizzHacks"
     }
 ];

@@ -108,7 +108,7 @@ class content{
     }
 
     goToPage(){
-        window.location.replace(mainJSONinfo[this.current]["link"]);
+        window.location.href = mainJSONinfo[this.current]["link"];
     }
 }
 
@@ -119,7 +119,13 @@ class content{
     // resize the canvas to fill browser window dynamically
     window.addEventListener('resize', resizeCanvas, false);
     var imgAlex = new Image(); 
-    imgAlex.src = "thingy.png"; 
+    imgAlex.src = "thingy.png";
+    
+    var imgArrow = new Image(); 
+    imgArrow.src = "arrow.png";
+
+    var imgArrow2 = new Image(); 
+    imgArrow2.src = "arrow2.png";
 
     var JSONimages = [];
     for (let i = 0; i < mainJSONinfo.length; i++) {
@@ -161,6 +167,8 @@ class content{
         ctx.fillRect(50,50,10,50)
 
         ctx.drawImage(imgAlex,70,50);
+        ctx.drawImage(imgArrow ,10              ,canvas.height / 2, 80, 200);
+        ctx.drawImage(imgArrow2,canvas.width -90,canvas.height / 2, 80, 200);
 
         display.draw()
     }
