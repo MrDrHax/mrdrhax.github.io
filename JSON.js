@@ -21,11 +21,17 @@ var mainJSONinfo = [
         "title" : "Simon (colab)",
         "description" : "the pretty well known simon game, made in pyglet, as a project for school",
         "img" : "images/Simon.png",
-        "link" : ""
+        "link" : "https://mrdrhax.github.io/simon-game/"
     },
     {
         "title" : "grizzhacks hakathon (colab)",
         "description" : "the pretty well known simon game, made in pyglet, as a project for school",
+        "img" : "images/Grizz.png",
+        "link" : "https://github.com/JorgePerC/GrizzHacks"
+    },
+    {
+        "title" : "Volcano simulation",
+        "description" : "a web based app made in python to simulate volcanic activity!",
         "img" : "images/Simon.png",
         "link" : "https://github.com/JorgePerC/GrizzHacks"
     }
