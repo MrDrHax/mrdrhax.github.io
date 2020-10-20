@@ -45,7 +45,7 @@ class cube{
 }
 
 class content{
-    current = 1;
+    current = 0;
     constructor(ctx, images){
         this.screenspace = [canvas.width,canvas.height - 200];
 
