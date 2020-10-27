@@ -25,7 +25,7 @@ var mainJSONinfo = [
     },
     {
         "title" : "grizzhacks hakathon (colab)",
-        "description" : "the pretty well known simon game, made in pyglet, as a project for school",
+        "description" : "This was a project developed in flask, as part of a hackathon!",
         "img" : "images/Grizz.png",
         "link" : "https://github.com/JorgePerC/GrizzHacks"
     },
